@@ -18,6 +18,9 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
+          distribution: 'temurin'  # Specify the distribution
+          java-package: jdk
+          architecture: x64
 
       - name: Cache Maven packages
         uses: actions/cache@v3
@@ -33,13 +36,15 @@ jobs:
       - name: Run Tests
         run: mvn test  # Executes the test suite
 
-      - name: Archive Extent Reports
+      - name: Copy Extent Report Files
         if: always()  # Ensures report generation even if tests fail
-        run:
-          mkdir -p extent-reports/HtmlReport
-          mkdir -p extent-reports/PdfReport
-          cp -r test-output/HtmlReport/* extent-reports/HtmlReport/
+        run: |
+          mkdir -p extent-reports/HtmlReport &&
+          mkdir -p extent-reports/PdfReport &&
+          cp -r test-output/HtmlReport/* extent-reports/HtmlReport/ &&
           cp -r test-output/PdfReport/* extent-reports/PdfReport/
+
+
       - name: Upload HTML Report
         uses: actions/upload-artifact@v4
         with:
