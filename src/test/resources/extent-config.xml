@@ -18,7 +18,7 @@
         <protocol>https</protocol>
 
         <!-- title of the document -->
-        <documentTitle>Practice Form Automation</documentTitle>
+        <documentTitle>Open Cart Automation</documentTitle>
 
         <!-- report name - displayed at top-nav -->
         <reportName>Test Report</reportName>
