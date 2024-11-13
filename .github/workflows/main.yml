@@ -20,7 +20,7 @@ jobs:
           java-version: '11'
 
       - name: Cache Maven packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -41,7 +41,7 @@ jobs:
           cp -r test-output/HtmlReport/* extent-reports/HtmlReport/
           cp -r test-output/PdfReport/* extent-reports/PdfReport/
       - name: Upload HTML Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: HtmlReport
           path: extent-reports/HtmlReport/  # Uploads HTML report
